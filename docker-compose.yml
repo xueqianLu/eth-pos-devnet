@@ -14,7 +14,7 @@ services:
     image: "ethereum/client-go:latest"
     command:
       - --http
-      - --http.api=eth
+      - --http.api=eth,net,web3,debug,txpool
       - --http.addr=0.0.0.0
       - --authrpc.vhosts=*
       - --authrpc.addr=0.0.0.0
@@ -27,8 +27,8 @@ services:
       - --syncmode=full
       - --mine
     ports:
-      - 8551:8551
-      - 8545:8545
+      - 38551:8551
+      - 38545:8545
     depends_on:
       geth-genesis:
         condition: service_completed_successfully
@@ -80,9 +80,9 @@ services:
       create-beacon-chain-genesis:
         condition: service_completed_successfully
     ports:
-      - 4000:4000
-      - 3500:3500
-      - 8080:8080
+      - 34000:4000
+      - 33500:3500
+      - 38080:8080
     volumes:
       - ./consensus:/consensus
       - ./jwtsecret:/execution/jwtsecret
